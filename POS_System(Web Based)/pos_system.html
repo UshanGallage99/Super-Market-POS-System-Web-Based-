@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>POS System</title>
+    <title>Ushan</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="assests/css/bootstrap.css">
 </head>
@@ -51,47 +51,46 @@
     <div class="row mt-1 p-0">
         <div class="col-xl-8 col-lg-6">
              
-            <table class="table table-hover border mt-1" id="tblCustomer">
+            <table class="table table-hover border mt-1" >
                 <thead class="" style="background: #9370DB">
                 <tr>
                     <th scope="col">Customer ID</th>
                     <th scope="col">Customer Name</th>
                     <th scope="col">Customer Address</th>
-                    <th scope="col">Customer Contact</th>
+                    <th scope="col">Customer Salary</th>
+                    <!-- <th scope="col">Customer Contact</th>
                     <th scope="col">Date Of Birth</th>
-                    <th scope="col">Gender</th>
+                    <th scope="col">Gender</th> -->
                 </tr>
                 </thead>
-                <tbody class="" style="background: white">
+                <tbody class="" style="background: white" id="tblCustomer">
                 <tr>
                      
-                    <td>C001</td>
+                    <!-- <td>C001</td>
                     <td>Abc</td>
                     <td>Abc</td>
                     <td>Abc</td>
                     <td>Abc</td>
-                    <td>abc</td>
+                    <td>abc</td> -->
                 </tr>
                 <tr>
                      
-                    <td>C002</td>
+                    <!-- <td>C002</td>
                     <td>Abc</td>
                     <td>Abc</td>
                     <td>Abc</td>
                     <td>Abc</td>
-                    <td>abc</td>
+                    <td>abc</td> -->
                 </tr>
                 <tr>
-                    <td>C003</td>
+                    <!-- <td>C003</td>
                     <td>Abc</td>
                     <td>Abc</td>
                     <td>Abc</td>
                     <td>Abc</td>
-                    <td>abc</td>
+                    <td>abc</td> -->
                 </tr>
-                
-
-                </tbody>
+               </tbody>
             </table>
         </div>
         <div class="col-xl-4">
@@ -120,6 +119,12 @@
                     </div>
                     <div class="row p-2 mt-0">
                         <div class="form-group col-12">
+                            <lable>Customer Salary</lable>
+                            <input type="text" id="txtCustomerSalary" class="form-control" >
+                        </div>
+                    </div>
+                    <!-- <div class="row p-2 mt-0">
+                        <div class="form-group col-12">
                             <lable>Customer Contact</lable>
                             <input type="text" id="txtCustomerContact" class="form-control" >
                         </div>
@@ -139,7 +144,7 @@
                             <option value="Female">Female</option>
                         </select>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="row p-1 mt-5" align="right">
                         <div class="form-group col-12">
                             <button type="button" class="btn bg-success text-white fw-bold" id="btnCustomerAdd">Save</button>
@@ -161,37 +166,37 @@
     <!-- <h1 class="mx-4">Item Form</h1> -->
     <div class="row mt-1 p-0">
         <div class="col-xl-8 col-lg-6">
-            <table class="table table-hover border mt-1" id="tblItem">
+            <table class="table table-hover border mt-1" >
                 <thead class="" style="background: #9370DB">
                 <tr>
                     <th scope="col">Item Code</th>
                     <th scope="col">Item Name</th>
-                    <th scope="col">Discription</th>
+                    <!-- <th scope="col">Discription</th> -->
                     <th scope="col">In Stocks</th>
                     <th scope="col">Unit Price</th>
                 </tr>
                 </thead>
-                <tbody class="" style="background: white">
+                <tbody class="" style="background: white" id="tblItem">
                 <tr>
-                    <td>I001</td>
+                    <!-- <td>I001</td>
                     <td>abc</td>
                     <td>abc</td>
                     <td>200</td>
-                    <td>abc</td>
+                    <td>abc</td> -->
                 </tr>
                 <tr>
-                    <td>I002</td>
+                    <!-- <td>I002</td>
                     <td>abc</td>
                     <td>abc</td>
                     <td>100</td>
-                    <td>abc</td>
+                    <td>abc</td> -->
                 </tr>
                 <tr>
-                    <td>I003</td>
+                    <!-- <td>I003</td>
                     <td>abc</td>
                     <td>abc</td>
                     <td>300</td>
-                    <td>abc</td>
+                    <td>abc</td> -->
                 </tr>
                  
                 </tbody>
@@ -215,12 +220,12 @@
                             <input type="text" id="txtItemName" class="form-control" >
                         </div>
                     </div>
-                    <div class="row p-2 mt-0">
+                    <!-- <div class="row p-2 mt-0">
                         <div class="form-group col-12">
                             <lable>Discription</lable>
                             <textarea type="text" id="txtDiscription" class="form-control" ></textarea>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="row p-2 mt-0">
                         <div class="form-group col-12">
                             <lable>In Stocks</lable>
@@ -233,12 +238,12 @@
                             <input type="text" id="txtUnitePrice" class="form-control" >
                         </div>
                     </div>
-                    <div class="row p-2 mt-0">
+                    <!-- <div class="row p-2 mt-0">
                         <div class="col-12">
                         <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                        <!-- <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button> -->
+                        <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
                         </div>  
-                    </div>
+                    </div> -->
 
                     <div class="row p-1 mt-5" align="right">
                         <div class="form-group col-12">
@@ -535,144 +540,24 @@
     </div>
 </div>
 
-<script src="assests/js/bootstrap.js"></script>
 <script src="assests/jquery/jquery-3.6.0.js"></script>
+<script src="controller/CustomerController.js"></script>
+<script src="controller/DashboardController.js"></script>
+<script src="controller/ItemController.js"></script>
+<script src="db/DB.js"></script>
+<script src="dto/CustomerDTO.js"></script>
+<script src="dto/ItemDTO.js"></script>
+
 
 <script>
-    var home = document.getElementById('home');
-    var customer = document.getElementById('customerform');
-    var item = document.getElementById('itemform');
-    var order = document.getElementById('orderform');
-    var order_details = document.getElementById('order_detailsform');
-    
+  
 
-    customer.style.display = 'none';
-    item.style.display = 'none';
-    order.style.display = 'none';
-    order_details.style.display = 'none';
-    home.style.display = 'block';
      
 
-    document.getElementById('btnHome').addEventListener('click', function () {
-        customer.style.display = 'none';
-        item.style.display = 'none';
-        order.style.display = 'none';
-        order_details.style.display = 'none';
-        home.style.display = 'block';
-    });
+    
+     
 
-    document.getElementById('btnCustomer').addEventListener('click', function () {
-        home.style.display = 'none';
-        customer.style.display = 'block';
-        item.style.display = 'none';
-        order.style.display = 'none';
-        order_details.style.display = 'none';
-    });
-
-    document.getElementById('btnItem').addEventListener('click', function () {
-        home.style.display = 'none';
-        customer.style.display = 'none';
-        item.style.display = 'block';
-        order.style.display = 'none';
-        order_details.style.display = 'none';
-    });
-
-    document.getElementById('btnOrders').addEventListener('click', function () {
-        home.style.display = 'none';
-        customer.style.display = 'none';
-        item.style.display = 'none';
-        order.style.display = 'block';
-        order_details.style.display = 'none';
-    });
-    document.getElementById('btnOrderDetails').addEventListener('click', function () {
-        home.style.display = 'none';
-        customer.style.display = 'none';
-        item.style.display = 'none';
-        order.style.display = 'none';
-        order_details.style.display = 'block';
-    });
-
-    // for customers
-    $('#btnCustomerAdd').click(function () {
-        $('#tblCustomer tbody').append('<tr>' +
-            '<td>' + $('#txtCustomerId').val() + '</td>' +
-            '<td>' + $('#txtCustomerName').val() + '</td>' +
-            '<td>' + $('#txtCustomerAddress').val() + '</td>' +
-            '<td>' + $('#txtCustomerContact').val() + '</td>' +
-            '<td>' + $('#dateofbirth').val() + '</td>' +
-            '<td>' + $('#cmbGender').val() + '</td>' +
-            '</tr>');
-            clearcustomer();
-    });
-
-    function clearcustomer() {
-        $('#txtCustomerId').val("");
-        $('#txtCustomerName').val("");
-        $('#txtCustomerAddress').val("");
-        $('#txtCustomerContact').val("");
-        $('#dateofbirth').val("");
-        $('#cmbGender').val("");
-    }
-
-    var customerTable= $('#tblCustomer tbody')[0];
-    for (let i = 0; i < customerTable.rows.length; i++) {
-        customerTable.rows[i].onclick = function () {
-            $('#txtCustomerId').val(this.cells[0].innerHTML);
-            $('#txtCustomerName').val(this.cells[1].innerHTML);
-            $('#txtCustomerAddress').val(this.cells[2].innerHTML);
-            $('#txtCustomerContact').val(this.cells[3].innerHTML);
-            $('#dateofbirth').val(this.cells[4].innerHTML);
-            $('#cmbGender').val(this.cells[5].innerHTML);
-        };
-    }
-
-    // for items
-    $('#btnItemAdd').click(function () {
-        $('#tblItem tbody').append('<tr>' +
-            '<td>' + $('#txtItemCode').val() + '</td>' +
-            '<td>' + $('#txtItemName').val() + '</td>' +
-            '<td>' + $('#txtDiscription').val() + '</td>' +
-            '<td>' + $('#txtQtyOnHand').val() + '</td>' +
-            '<td>' + $('#txtUnitePrice').val() + '</td>' +
-            '</tr>');
-            clearitem();
-    });
-
-    function clearitem() {
-        $('#txtItemCode').val("");
-        $('#txtItemName').val("");
-        $('#txtDiscription').val("");
-        $('#txtQtyOnHand').val("");
-        $('#txtUnitePrice').val("");
-    }
-
-    var itemTable= $('#tblItem tbody')[0];
-    for (let i = 0; i < itemTable.rows.length; i++) {
-        itemTable.rows[i].onclick = function () {
-            $('#txtItemCode').val(this.cells[0].innerHTML);
-            $('#txtItemName').val(this.cells[1].innerHTML);
-            $('#txtDiscription').val(this.cells[2].innerHTML);
-            $('#txtQtyOnHand').val(this.cells[3].innerHTML);
-            $('#txtUnitePrice').val(this.cells[4].innerHTML);
-        };
-    }
-
-    // $('#tblCustomer>tr').click(function (){
-    //    let id= $($(this).children().get(0)).text();
-    //    let name= $($(this).children().get(1)).text();
-    //    let address= $($(this).children().get(2)).text();
-    //    let salary= $($(this).children().get(3)).text();
-    //     console.log(id,name,address,salary);
-    // });
-
-    // $('#tblCustomer>tr').click(function (){
-    //     let id= $(this).children('td:eq(0)').text();
-    //     let name= $(this).children('td:eq(1)').text();
-    //     let address= $(this).children('td:eq(2)').text();
-    //     let salary= $(this).children('td:eq(3)').text();
-    //     console.log(id,name,address,salary);
-    // });
-
+    
 </script>
 
 </body>
