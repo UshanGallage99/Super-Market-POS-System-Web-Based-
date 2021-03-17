@@ -281,7 +281,7 @@
                         </div>
                     </div>
                     <div class="row p-0 mt-1">
-                        <div class="form-group col-4">
+                        <!-- <div class="form-group col-4">
                             <label>Customer ID</label>
                             <select aria-label="Default select example" class="form-select" id="cmbCustomerID">
                                 <option value="0"></option>
@@ -290,14 +290,18 @@
                                 <option value="3">C003</option>
                                 <option value="4">C004</option>
                             </select>
+                            </div> -->
+                            <div class="form-group col-4">
+                                <lable>Customer ID</lable>
+                                <input type="text" class="form-control" id="txtCustomerID">
                             </div>
                             <div class="form-group col-8">
                                 <lable>Customer Name</lable>
-                                <input type="text" id="txtCustomerName" class="form-control" >
+                                <input type="text" id="txtCustomerName2" class="form-control" >
                             </div>
                     </div>
                     <div class="row p-0 mt-1">
-                        <div class="form-group col-4">
+                        <!-- <div class="form-group col-4">
                             <label>Item Code</label>
                             <select aria-label="Default select example" class="form-select" id="cmbItemCode">
                                 <option value="0"></option>
@@ -306,20 +310,24 @@
                                 <option value="3">I003</option>
                                 <option value="4">I004</option>
                             </select>
+                            </div> -->
+                            <div class="form-group col-4">
+                                <lable>Item Code</lable>
+                                <input type="text"  class="form-control" id="txtItemCode2">
                             </div>
                             <div class="form-group col-8">
                                 <lable>Item Name</lable>
-                                <input type="text" id="txtItemName" class="form-control" >
+                                <input type="text"  class="form-control" id="txtItemName2" >
                             </div>
                     </div>
                     <div class="row p-0 mt-1">
                         <div class="form-group col-6">
                             <lable>In Stocks</lable>
-                            <input type="number" id="txtInStocks" class="form-control">
+                            <input type="number" id="txtInStocks2" class="form-control">
                         </div>
                         <div class="form-group col-6">
                             <lable>Unit Price</lable>
-                            <input type="number" id="txtUnitPrice" class="form-control" >
+                            <input type="number" id="txtUnitPrice2" class="form-control" >
                         </div>
                         <div class="form-group col-6">
                             <lable>Quantity</lable>
@@ -328,14 +336,14 @@
                     </div>                
                     <div class="row p-0 mt-1" align="right"> 
                         <div class="form-group col-12">
-                            <button type="button" class="btn bg-warning text-white fw-bold">Add To List</button>
+                            <button type="button" class="btn bg-warning text-white fw-bold" id="btnAddToList">Add To List</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-xl-6">
-            <table class="table table-hover border mt-1">
+            <table class="table table-hover border mt-1" id="tblLIst">
                 <thead class="" style="background: #9370DB">
                 <tr>
                     <th scope="col">Item Code</th>
@@ -347,39 +355,20 @@
                 </thead>
                 <tbody class="" style="background: white">
                 <tr>
-                    <th scope="row">1</th>
+                    <!-- <th scope="row">1</th>
                     <td>...</td>
                     <td>...</td>
                     <td>...</td>
-                    <td>...</td>
+                    <td>...</td> -->
                 </tr>
                 <tr>
-                    <th scope="row">2</th>
+                    <!-- <th scope="row">2</th>
                     <td>...</td>
                     <td>...</td>
                     <td>...</td>
-                    <td>...</td>
+                    <td>...</td> -->
                 </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>...</td>
-                    <td>...</td>
-                    <td>...</td>
-                    <td>...</td>
-                </tr>
-                <tr>
-                    <th scope="row">4</th>
-                    <td>...</td>
-                    <td>...</td>
-                    <td>...</td>
-                    <td>...</td>
-                </tr>
-                <tr>
-                    <th scope="row">5</th>
-                    <td>...</td>
-                    <td>...</td>
-                    <td>...</td>
-                    <td>...</td>
+                 
                 </tbody>
             </table>
             <div class="row p-0 mt-1" align="right">
@@ -544,6 +533,7 @@
 <script src="controller/CustomerController.js"></script>
 <script src="controller/DashboardController.js"></script>
 <script src="controller/ItemController.js"></script>
+<script src="controller/OrdersController.js"></script>
 <script src="db/DB.js"></script>
 <script src="dto/CustomerDTO.js"></script>
 <script src="dto/ItemDTO.js"></script>
