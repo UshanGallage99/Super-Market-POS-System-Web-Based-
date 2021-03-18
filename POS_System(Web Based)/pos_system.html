@@ -343,7 +343,7 @@
             </div>
         </div>
         <div class="col-xl-6">
-            <table class="table table-hover border mt-1" id="tblLIst">
+            <table class="table table-hover border mt-1" ">
                 <thead class="" style="background: #9370DB">
                 <tr>
                     <th scope="col">Item Code</th>
@@ -353,7 +353,7 @@
                     <th scope="col">Total</th>
                 </tr>
                 </thead>
-                <tbody class="" style="background: white">
+                <tbody class="" style="background: white" id="tblLIst" >
                 <tr>
                     <!-- <th scope="row">1</th>
                     <td>...</td>
@@ -414,7 +414,7 @@
                     <div class="row p-0 mt-1">
                         <div class="form-group col-12">
                             <lable style="font-size: 40px;">Rs.</lable>
-                            <lable style="font-size: 40px;">1500.00</lable>                        
+                            <lable style="font-size: 40px;" id="subTotal"></lable>                        
                         </div>                                       
                     </div>                 
                 </div>                      
@@ -537,6 +537,7 @@
 <script src="db/DB.js"></script>
 <script src="dto/CustomerDTO.js"></script>
 <script src="dto/ItemDTO.js"></script>
+<script src="dto/ItemListDTO.js"></script>
 
 
 <script>
