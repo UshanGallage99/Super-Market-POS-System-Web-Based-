@@ -46,31 +46,8 @@ function clearItem2() {
     $('#txtItemCode2').val("");     
 }
 
-// add to list
-// $('#btnAddToList').click(function () {
-//     $('#tblLIst tbody').append('<tr>' +
-//         '<td>' + $('#txtItemCode2').val() + '</td>' +
-//         '<td>' + $('#txtItemName2').val() + '</td>' +
-//         '<td>' + $('#txtUnitPrice2').val() + '</td>' +
-//         '<td>' + $('#txtQuantity').val() + '</td>' +
-//         '<td>' + $('#txtQuantity').val()* $('#txtUnitPrice2').val() + '</td>' +
-//         '</tr>');
-//         subTotal();
-
-// });
-
-// function subTotal() {
-        
-//             // var rowTotals = $('#tblLIst>tr').children('td:eq(4)').text();
-//             // var orderTotal = 0;
-//             // for(var i = 0; i < rowTotals.length; i++){
-//             //     orderTotal += parseFloat(rowTotals[i].value);
-//             // }
-//             // alert(orderTotal);
-  
-// }
-
-// save
+// ===============================================================================================
+// save add to list
 $('#btnAddToList').click(function () {
     let itemcode = $("#txtItemCode2").val();
     let itemname = $("#txtItemName2").val();
@@ -81,13 +58,9 @@ $('#btnAddToList').click(function () {
     let result = saveItemList(itemcode, itemname, unitprice, qty, total);
     if(result)clearfields();
     subTotal();
-    updateStocks(itemcode);
+    // updateStocks(itemcode);
 });
 
-// save
-function getAllList() {
-    return itemList;
-}
 function saveItemList(itemcode, itemname, unitprice, qty, total) {
     let itemlist = new ItemListDTO(itemcode, itemname, unitprice, qty, total);
     itemList.push(itemlist);// customer aded
@@ -97,7 +70,9 @@ function saveItemList(itemcode, itemname, unitprice, qty, total) {
     return true;   
 }
 
-// other functions
+function getAllList() {
+    return itemList;
+}
 function loadAllItemList() {
     let allItemList = getAllList();
     $('#tblLIst').empty(); // clear all the table before adding for avoid duplicate
@@ -127,6 +102,66 @@ function loadAllItemList() {
       
    });
 }
+
+// ========================================================================================================
+// delete list
+$("#btnClear").click(function () {
+    let itemCode = $("#txtItemCode2").val();
+    let option=confirm(`Do You Want to Remove This Item ? ID:${itemCode}`);
+    if (option){
+        let result=deleteItemList(itemCode);
+        if (result){
+            alert("Item Successfully Removed From the List !");
+        } else{
+            alert("Delete Failed !")
+        }
+
+    }
+    loadAllItemList();
+    clearfields();
+    subTotal();
+});
+
+function searchItemList(itemCode) {
+    for (var i in itemList) {
+        if (itemList[i].getIlcode() == itemCode) return itemList[i];
+    }
+    return null;
+}
+function deleteItemList(itemCode) {
+    let item = searchItemList(itemCode);
+    if (item != null) {
+        let indexNumber = itemList.indexOf(item);
+        itemList.splice(indexNumber, 1);
+        return true;
+    } else {
+        return false;
+    }
+}
+
+// delete all list
+$("#btnClearAll").click(function () {
+    let option=confirm(`Do You Want to Remove This Item List ?`);
+    let allItemList = getAllItemList();
+    if (option){    
+        for (var i in allItemList){
+            // allItemList.pop();
+            allItemList.splice(i);
+             
+        }
+    }
+    loadAllItemList();
+    clearfields();
+    subTotal();
+});
+
+
+function getAllItemList() {
+    return itemList;
+}
+
+// ===============================================================================================
+// clear feilds
 function clearfields() {
     $("#txtItemCode2").val("");
     $("#txtItemName2").val("");
@@ -136,8 +171,9 @@ function clearfields() {
          
     }
 
+// =============================================================================================
+// calculate total
 function subTotal() {
-    
     var orderTotal = 0;
     for (var i in itemList) {
         var rowTotals =itemList[i].getIltotal() ;
@@ -145,22 +181,43 @@ function subTotal() {
     }
     $("#subTotal").text(orderTotal);
   
-            // var rowTotals = $('#tblLIst>tr').children('td:eq(4)').text();
-            // var orderTotal = 0;
-            // for(var i = 0; i < rowTotals.length; i++){
-            //     orderTotal += parseFloat(rowTotals[i].value);
-            // }
-            // alert(orderTotal);
-  
 }
+
+// =================================================================================================
+// manage payments
+$("#txtCash").on('keyup', function (eObj) {
+    let balance=0;
+    let total =$("#subTotal").text();
+    let discount=0;
+    if (eObj.key == "Enter") {
+        if(total==2000){
+            discount=total*(10/100);
+        }else if(total==5000){
+            discount=total*(20/100);
+        }
+        let cash = $("#txtCash").val();
+        balance= cash-(total-discount);
+        
+    }
+    $("#txtDiscount").val(discount);
+    $("#txtBalance").val(balance);
+});
+
+// clear
+function clearpaymentfields() {
+    $("#txtCash").val("");
+    $("#txtDiscount").val("");
+    $("#txtBalance").val("");
+    }
+
 // function updateStocks(itemcode){
 //     var newStocks = 0;
 //     for (var i in itemList) {
 //         for (var j in itemTable) {
              
-//         if ((itemList[i].getIlcode() && itemTable[j].getQtyOnHand())==itemcode ){
+//         if ((itemList[i].getIlcode() && itemTable[j].getQtyOnHand())==itemcode )
 //             newStocks=itemTable[j].getQtyOnHand()-itemlist[i].getIlqty();
-//         }
+        
 //     }
 //     }alert(newStocks);
 // }
