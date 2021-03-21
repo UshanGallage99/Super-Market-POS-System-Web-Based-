@@ -8,6 +8,7 @@ $('#btnCustomerAdd').click(function () {
 
     let result = saveCustomer(customerID, customerName, customerAddress, customerSalary);
     if(result)clearcustomer();
+    generateCustomerID();
 });
 
 // update
@@ -28,6 +29,7 @@ $("#btnCustomerUpdate").click(function () {
     }
      loadAllCustomers();
      clearcustomer();
+     generateCustomerID();
 
 });
 
@@ -46,6 +48,7 @@ $("#btnCustomerDelete").click(function () {
     }
     loadAllCustomers();
     clearcustomer();
+    generateCustomerID();
 });
 
 // search
@@ -58,7 +61,7 @@ $("#txtCustomerId").on('keyup', function (eObj) {
             $("#txtCustomerAddress").val(customer.getCustomerAddress());
             $("#txtCustomerSalary").val(customer.getCustomerSalary());
         } else {
-            clearcustomer();
+            // clearcustomer();
         }
     }
 });
@@ -147,3 +150,53 @@ function clearcustomer() {
         $('#txtCustomerSalary').val("");
          
     }
+
+
+    function generateCustomerID() {
+        if(customerTable.length == 0){
+            $("#txtCustomerId").val("C-001");
+        }else{
+            let lastCustomerID=customerTable[customerTable.length-1].getCustomerID();
+            let newID =Number.parseInt(lastCustomerID.substring(2, 5))+1;
+            if(newID < 10){
+                newID="C-00"+newID;
+            }else if(newID<100){
+                newID="C-0" + newID;
+            }
+            $("#txtCustomerId").val(newID);
+        }
+    }
+
+// reg ex
+let cusIDRegEx=/^(C-)[0-9]{1,3}$/;
+$("#txtCustomerId").on('keyup',function (event){
+    if (event.key=="Enter"){
+        $('#txtCustomerName').focus();
+    }
+    let inputID=$("#txtCustomerId").val();
+    if (cusIDRegEx.test(inputID)){
+        $("#txtCustomerId").css('border','1px solid green');
+        $("#lblcusid").text("");
+    }else{
+        $("#txtCustomerId").css('border','1px solid red');
+        $("#lblcusid").text('Invalid Customer ID (C-001)');
+    }
+});
+
+$("#txtCustomerName").on('keyup',function (event){
+    if (event.key=="Enter"){
+        $('#txtCustomerAddress').focus();
+    }
+});
+
+$("#txtCustomerAddress").on('keyup',function (event){
+    if (event.key=="Enter"){
+        $('#txtCustomerSalary').focus();
+    }
+});
+
+$("#txtCustomerSalary").on('keyup',function (event){
+    if (event.key=="Enter"){
+        $('#btnCustomerAdd').focus();
+    }
+});

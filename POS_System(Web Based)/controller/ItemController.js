@@ -9,6 +9,7 @@ $('#btnItemAdd').click(function () {
 
     let result = saveItem(itemCode, itemName, qtyOnhand, unitprice);
     if(result)clearitem();
+    generateItemCode();
 });
 
 // update
@@ -29,6 +30,7 @@ $("#btnItemUpdate").click(function () {
     }
      loadAllItems();
      clearitem();
+     generateItemCode();
 
 });
 
@@ -47,6 +49,7 @@ $("#btnItemDelete").click(function () {
     }
     loadAllItems();
     clearitem();
+    generateItemCode();
 });
 
 // search
@@ -59,7 +62,7 @@ $("#txtItemCode").on('keyup', function (eObj) {
             $("#txtQtyOnHand").val(item.getQtyOnHand());
             $("#txtUnitePrice").val(item.getUnitPrice());
         } else {
-            clearitem();
+            // clearitem();
         }
     }
 });
@@ -149,3 +152,53 @@ function clearitem() {
         $('#txtQtyOnHand').val("");
         $('#txtUnitePrice').val("");
 }
+
+function generateItemCode() {
+    if(itemTable.length == 0){
+        $("#txtItemCode").val("I-001");
+    }else{
+        let lastItemCode=itemTable[itemTable.length-1].getItemCode();
+        let newCode =Number.parseInt(lastItemCode.substring(2, 5))+1;
+        if(newCode < 10){
+            newCode="I-00"+newCode;
+        }else if(newCode<100){
+            newCode="I-0" + newCode;
+        }
+        $("#txtItemCode").val(newCode);
+    }
+}
+
+// reg ex
+let itemCOdeRegEx=/^(I-)[0-9]{1,3}$/;
+$("#txtItemCode").on('keyup',function (event){
+    if (event.key=="Enter"){
+        $('#txtItemName').focus();
+    }
+    let inputCode=$("#txtItemCode").val();
+    if (itemCOdeRegEx.test(inputCode)){
+        $("#txtItemCode").css('border','1px solid green');
+        $("#lblitemcode").text("");
+    }else{
+        $("#txtItemCode").css('border','1px solid red');
+        $("#lblitemcode").text('Invalid Item Code (I-001)');
+    }
+});
+
+$("#txtItemName").on('keyup',function (event){
+    if (event.key=="Enter"){
+        $('#txtQtyOnHand').focus();
+    }
+});
+
+$("#txtQtyOnHand").on('keyup',function (event){
+    if (event.key=="Enter"){
+        $('#txtUnitePrice').focus();
+    }
+});
+
+$("#txtUnitePrice").on('keyup',function (event){
+    if (event.key=="Enter"){
+        $('#btnItemAdd').focus();
+    }
+});
+

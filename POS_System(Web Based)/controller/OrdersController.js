@@ -168,6 +168,10 @@ function clearfields() {
     $("#txtUnitPrice2").val("");
     $("#txtQuantity").val("");
     $("#txtInStocks2").val("");
+    // $("#txtOrderId").val("");
+    // $("#txtCustomerID").val("");
+    // $("#txtCustomerName2").val("");
+     
          
     }
 
@@ -221,3 +225,104 @@ function clearpaymentfields() {
 //     }
 //     }alert(newStocks);
 // }
+
+// ====================================================================================================
+// place order
+$('#btnPlaceOrder').click(function () {
+    let orderID = $("#txtOrderId").val();
+    let date = $("#txtCustomerID").val();
+    let cID = $("#txtDate").val();
+    
+
+    let itemcode = $("#txtItemCode2").val();
+    let unitprice = $("#txtUnitPrice2").val();
+    let qty = $("#txtQuantity").val();
+     
+
+    let result1 = saveOrder(orderID, date, cID);
+    let result2 = saveOrderDetails(orderID, itemcode, unitprice, qty);
+    if(result1 && result2)clearOrderfields();
+    generateOrderID();
+
+});
+
+function saveOrder(orderID, date, cID) {
+    let order = new OrderDTO(orderID, date, cID);
+    orderTable.push(order);// order aded
+
+    // load the table
+    loadAllOrderList();
+    return true;   
+}
+function saveOrderDetails(orderID, itemcode, unitprice, qty) {
+    let orderDetails = new OrderDetailsDTO(orderID, itemcode, unitprice, qty);
+    orderDetailsTable.push(orderDetails);// order details aded
+
+    // load the table
+    loadAllOrderDetails();
+    return true;   
+}
+
+function getAllOrders() {
+    return orderTable;
+}
+
+function loadAllOrderList() {
+    let allOrderList = getAllOrders();
+    $('#tblOrders').empty(); // clear all the table before adding for avoid duplicate
+    for (var i in allOrderList) {
+        let id = allOrderList[i].getOrderId();
+        let date = allOrderList[i].getDate();
+        let cid = allOrderList[i].getCusId();
+
+        var row = `<tr><td>${id}</td><td>${date}</td><td>${cid}</td></tr>`;
+        $('#tblOrders').append(row);
+    }
+}
+
+function getAllOrderDetails() {
+    return orderDetailsTable;
+}
+
+function loadAllOrderDetails() {
+    let allOrderDetailsList = getAllOrderDetails();
+    $('#tblPrderDetails').empty(); // clear all the table before adding for avoid duplicate
+    for (var i in allOrderDetailsList) {
+        let oid = allOrderDetailsList[i].getId();
+        let code = allOrderDetailsList[i].getCode();
+        let price = allOrderDetailsList[i].getUprice();
+        let qtyl = allOrderDetailsList[i].getQty();
+
+        var row = `<tr><td>${oid}</td><td>${code}</td><td>${price}</td><td>${qtyl}</td></tr>`;
+        $('#tblOrderDetails').append(row);
+    }
+
+}
+
+function clearOrderfields() {
+    $("#txtItemCode2").val("");
+    $("#txtItemName2").val("");
+    $("#txtUnitPrice2").val("");
+    $("#txtQuantity").val("");
+    $("#txtInStocks2").val("");
+    $("#txtOrderId").val("");
+    $("#txtCustomerID").val("");
+    $("#txtCustomerName2").val("");
+         
+    }
+
+
+function generateOrderID() {
+    if(orderTable.length == 0){
+        $("#txtOrderId").val("R-001");
+    }else{
+        let lastOrderID=orderTable[orderTable.length-1].getOrderId();
+        let newID =Number.parseInt(lastOrderID.substring(2, 5))+1;
+        if(newID < 10){
+            newID="R-00"+newID;
+        }else if(newID<100){
+            newID="R-0" + newID;
+        }
+        $("#txtOrderId").val(newID);
+    }
+}

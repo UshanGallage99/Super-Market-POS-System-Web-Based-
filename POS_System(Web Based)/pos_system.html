@@ -103,24 +103,28 @@
                         <div class="form-group col-12">
                             <lable>Customer ID</lable>
                             <input type="text" id="txtCustomerId" class="form-control">
+                            <span class="control-error" id="lblcusid"></span>
                         </div>
                     </div>
                     <div class="row p-2 mt-0">
                         <div class="form-group col-12">
                             <lable>Customer Name</lable>
                             <input type="text" id="txtCustomerName" class="form-control" >
+                            <span class="control-error" id="lblcusname"></span>
                         </div>
                     </div>
                     <div class="row p-2 mt-0">
                         <div class="form-group col-12">
                             <lable>Customer Address</lable>
                             <input type="text" id="txtCustomerAddress" class="form-control" >
+                            <span class="control-error" id="lblcusaddress"></span>
                         </div>
                     </div>
                     <div class="row p-2 mt-0">
                         <div class="form-group col-12">
                             <lable>Customer Salary</lable>
                             <input type="text" id="txtCustomerSalary" class="form-control" >
+                            <span class="control-error" id="lblcussalary"></span>
                         </div>
                     </div>
                     <!-- <div class="row p-2 mt-0">
@@ -212,12 +216,14 @@
                         <div class="form-group col-12">
                             <lable>Item Code</lable>
                             <input type="text" id="txtItemCode" class="form-control">
+                            <span class="control-error" id="lblitemcode"></span>
                         </div>
                     </div>
                     <div class="row p-2 mt-0">
                         <div class="form-group col-12">
                             <lable>Item Name</lable>
                             <input type="text" id="txtItemName" class="form-control" >
+                            <span class="control-error" id="lblitemname"></span>
                         </div>
                     </div>
                     <!-- <div class="row p-2 mt-0">
@@ -230,12 +236,14 @@
                         <div class="form-group col-12">
                             <lable>In Stocks</lable>
                             <input type="number" id="txtQtyOnHand" class="form-control" >
+                            <span class="control-error" id="lblitemstock"></span>
                         </div>
                     </div>
                     <div class="row p-2 mt-0">
                         <div class="form-group col-12">
                             <lable>Unit Price</lable>
                             <input type="text" id="txtUnitePrice" class="form-control" >
+                            <span class="control-error" id="lblitemprice"></span>
                         </div>
                     </div>
                     <!-- <div class="row p-2 mt-0">
@@ -277,7 +285,7 @@
                         </div>
                         <div class="form-group col-6">
                             <lable>Date</lable>
-                            <input type="date" id="txtDate" class="form-control" >
+                            <input type="" id="txtDate" class="form-control" >
                         </div>
                     </div>
                     <div class="row p-0 mt-1">
@@ -421,7 +429,7 @@
             </div>
             <div class="row p-0 mt-2" align="right">
                 <div class="form-group col-12">
-                    <button type="button" class="btn btn-success">Place Order</button>
+                    <button type="button" class="btn btn-success" id="btnPlaceOrder">Place Order</button>
                 </div>
                 </div>
         </div>
@@ -437,36 +445,23 @@
                 <thead class="" style="background: #9370DB">
                 <tr>
                     <th scope="col">Order ID</th>
-                    <th scope="col">Customer ID</th>
                     <th scope="col">Date</th>
+                    <th scope="col">Customer ID</th>
+                  
                 </tr>
                 </thead>
-                <tbody class="" style="background: white">
+                <tbody class="" style="background: white" id="tblOrders">
                 <tr>
-                    <th scope="row">1</th>
+                    <!-- <th scope="row">1</th>
                     <td>...</td>
-                    <td>...</td>
+                    <td>...</td> -->
                 </tr>
                 <tr>
-                    <th scope="row">2</th>
+                    <!-- <th scope="row">2</th>
                     <td>...</td>
-                    <td>...</td>                     
+                    <td>...</td>                      -->
                 </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>...</td>
-                    <td>...</td>                     
-                </tr>
-                <tr>
-                    <th scope="row">4</th>
-                    <td>...</td>
-                    <td>...</td>                    
-                </tr>
-                <tr>
-                    <th scope="row">5</th>
-                    <td>...</td>
-                    <td>...</td>                     
-                </tr> 
+                  
                 </tbody>
             </table>
         </div>
@@ -476,53 +471,28 @@
                 <tr>
                     <th scope="col">Order ID</th>
                     <th scope="col">Item Code</th>
-                    <th scope="col">Item Name</th>
                     <th scope="col">Unit Price</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Total</th>                   
+                    <th scope="col">Quantity</th>                  
                 </tr>
                 </thead>
-                <tbody class="" style="background: white">
+                <tbody class="" style="background: white" id="tblOrderDetails">
                 <tr>
-                    <th scope="row">1</th>
+                    <!-- <th scope="row">1</th>
                     <td>...</td>
                     <td>...</td>
                     <td>...</td>
                     <td>...</td>
-                    <td>...</td>
+                    <td>...</td> -->
                 </tr>
                 <tr>
-                    <th scope="row">2</th>
+                    <!-- <th scope="row">2</th>
                     <td>...</td>
                     <td>...</td>
                     <td>...</td>
                     <td>...</td>
-                    <td>...</td>
+                    <td>...</td> -->
                 </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>...</td>
-                    <td>...</td>
-                    <td>...</td>
-                    <td>...</td>
-                    <td>...</td>
-                </tr>
-                <tr>
-                    <th scope="row">4</th>
-                    <td>...</td>
-                    <td>...</td>
-                    <td>...</td>
-                    <td>...</td>
-                    <td>...</td>
-                </tr>
-                <tr>
-                    <th scope="row">5</th>
-                    <td>...</td>
-                    <td>...</td>
-                    <td>...</td>
-                    <td>...</td>
-                    <td>...</td>
-                </tr> 
+                  
                 </tbody>
             </table>
         </div>
@@ -538,7 +508,8 @@
 <script src="dto/CustomerDTO.js"></script>
 <script src="dto/ItemDTO.js"></script>
 <script src="dto/ItemListDTO.js"></script>
-
+<script src="dto/OrderDTO.js"></script>
+<script src="dto/OrderDetailsDTO.js"></script>
 
 <script>
   
