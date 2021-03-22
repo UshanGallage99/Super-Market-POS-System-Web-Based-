@@ -58,12 +58,21 @@ $('#btnAddToList').click(function () {
     let result = saveItemList(itemcode, itemname, unitprice, qty, total);
     if(result)clearfields();
     subTotal();
-    // updateStocks(itemcode);
+
+    // let newQty;
+    // newQty = Number.parseInt($('#txtInStocks2').val()) - Number.parseInt($('#txtQuantity').val());
+    // $('#txtInStocks2').val(newQty);
+    // let allItems = itemTable;
+    // for (let i = 0; i < allItems.length; i++) {
+    //     if (allItems[i].getItemCode() == $('#txtItemCode2').val()) {
+    //         allItems[i].setQtyOnHand(newQty);
+    //     }
+    // }
 });
 
 function saveItemList(itemcode, itemname, unitprice, qty, total) {
     let itemlist = new ItemListDTO(itemcode, itemname, unitprice, qty, total);
-    itemList.push(itemlist);// customer aded
+    itemList.push(itemlist);// item list aded
 
     // load the table
     loadAllItemList();
@@ -214,54 +223,52 @@ function clearpaymentfields() {
     $("#txtBalance").val("");
     }
 
-// function updateStocks(itemcode){
-//     var newStocks = 0;
-//     for (var i in itemList) {
-//         for (var j in itemTable) {
-             
-//         if ((itemList[i].getIlcode() && itemTable[j].getQtyOnHand())==itemcode )
-//             newStocks=itemTable[j].getQtyOnHand()-itemlist[i].getIlqty();
-        
-//     }
-//     }alert(newStocks);
-// }
-
 // ====================================================================================================
 // place order
 $('#btnPlaceOrder').click(function () {
     let orderID = $("#txtOrderId").val();
-    let date = $("#txtCustomerID").val();
-    let cID = $("#txtDate").val();
+    let date =  $("#txtDate").val();
+    let cID =$("#txtCustomerID").val();
     
+    let orderDetails = [];
 
-    let itemcode = $("#txtItemCode2").val();
-    let unitprice = $("#txtUnitPrice2").val();
-    let qty = $("#txtQuantity").val();
+    if ($('#txtCustomerId').val() !== "") {
+        if (!$('#tblLIst').is(':empty')) {
+            $('#tblLIst>tr').each(function () {
+                orderDetails.push(new OrderDetailsDTO(
+                    orderID,
+                    $($(this).children().get(0)).text(),
+                    $($(this).children().get(1)).text(),
+                    $($(this).children().get(2)).text(),
+                ));
+            });
+            let orderDTO = new OrderDTO(orderID, date, cID, orderDetails);
+            orderTable.push(orderDTO);
+
+            alert("Order Placed..!");
+            loadAllOrderList();
+            clearOrderfields();
+            generateOrderID();
+        } else {
+            alert("Cart Is Empty..!");
+            // disablePlaceOrder();
+        }
+    } else {
+        alert("Please Select Customer..!");
+        // $('#cmbCustomerId').focus();
+    }
+    // let itemcode = $("#txtItemCode2").val();
+    // let unitprice = $("#txtUnitPrice2").val();
+    // let qty = $("#txtQuantity").val();
      
 
-    let result1 = saveOrder(orderID, date, cID);
-    let result2 = saveOrderDetails(orderID, itemcode, unitprice, qty);
-    if(result1 && result2)clearOrderfields();
-    generateOrderID();
+    // let result1 = saveOrder(orderID, date, cID);
+    // let result2 = saveOrderDetails(orderID, itemcode, unitprice, qty);
+    // if(result1 && result2)clearOrderfields();
+    // generateOrderID();
+     
 
 });
-
-function saveOrder(orderID, date, cID) {
-    let order = new OrderDTO(orderID, date, cID);
-    orderTable.push(order);// order aded
-
-    // load the table
-    loadAllOrderList();
-    return true;   
-}
-function saveOrderDetails(orderID, itemcode, unitprice, qty) {
-    let orderDetails = new OrderDetailsDTO(orderID, itemcode, unitprice, qty);
-    orderDetailsTable.push(orderDetails);// order details aded
-
-    // load the table
-    loadAllOrderDetails();
-    return true;   
-}
 
 function getAllOrders() {
     return orderTable;
@@ -280,24 +287,66 @@ function loadAllOrderList() {
     }
 }
 
-function getAllOrderDetails() {
-    return orderDetailsTable;
-}
+//search Order
+$('#txtOrderId').on('keydown', function (event) {
+    if (event.key === "Enter") {
+        $('#tblLIst').empty();
+        let order = searchOrder($(this).val());
+        if (order != null) {
+            $('#txtOrderId').val(order.getOrderId());
+            $('#txtDate').val(order.getDate());
+            $('#txtCustomerID').val(order.getCusId());
+            let searchCustomer1 = searchCustomer2(order.getCusId());
+            $('#txtCustomerName2').val(searchCustomer1.getCustomerName());
+             
 
-function loadAllOrderDetails() {
-    let allOrderDetailsList = getAllOrderDetails();
-    $('#tblPrderDetails').empty(); // clear all the table before adding for avoid duplicate
-    for (var i in allOrderDetailsList) {
-        let oid = allOrderDetailsList[i].getId();
-        let code = allOrderDetailsList[i].getCode();
-        let price = allOrderDetailsList[i].getUprice();
-        let qtyl = allOrderDetailsList[i].getQty();
-
-        var row = `<tr><td>${oid}</td><td>${code}</td><td>${price}</td><td>${qtyl}</td></tr>`;
-        $('#tblOrderDetails').append(row);
+            let orderDetail = order.getOrderDetail();
+            for (var j in orderDetail) {
+                let itemCode1 = orderDetail[j].getCode();
+                let quantity1 = orderDetail[j].getQty();
+                let unitPrice1 = orderDetail[j].getUprice();
+                let searchItem1 = searchItem(itemCode1);
+                let name = searchItem1.getItemName();
+                let total1 = quantity1 * unitPrice1;
+                var row = `<tr><td>${itemCode1}</td><td>${name}</td><td>${unitPrice1}</td><td>${quantity1}</td><td>${total1 + ".00"}</td></tr>`;
+                $('#tblLIst').append(row);
+            }
+        }
+        // $('#tblCart>tr').off('dblclick');
+        // $('#tblCart>tr').on('dblclick', function () {
+        //     $(this).remove();
+        // });
     }
+});
 
+function searchOrder(orId) {
+    for (var i in orderTable) {
+        if (orId === orderTable[i].getOrderId()) {
+            return orderTable[i];
+        }
+    }
+    return null;
 }
+
+
+// function getAllOrderDetails() {
+//     return orderDetailsTable;
+// }
+
+// function loadAllOrderDetails() {
+//     let allOrderDetailsList = getAllOrderDetails();
+//     $('#tblLIst').empty(); // clear all the table before adding for avoid duplicate
+//     for (var i in allOrderDetailsList) {
+//         let oid = allOrderDetailsList[i].getId();
+//         let code = allOrderDetailsList[i].getCode();
+//         let price = allOrderDetailsList[i].getUprice();
+//         let qtyl = allOrderDetailsList[i].getQty();
+
+//         var row = `<tr><td>${oid}</td><td>${code}</td><td>${price}</td><td>${qtyl}</td></tr>`;
+//         $('#tblLIst').append(row);
+//     }
+
+// }
 
 function clearOrderfields() {
     $("#txtItemCode2").val("");
@@ -308,6 +357,7 @@ function clearOrderfields() {
     $("#txtOrderId").val("");
     $("#txtCustomerID").val("");
     $("#txtCustomerName2").val("");
+    $('#tblLIst').empty();
          
     }
 

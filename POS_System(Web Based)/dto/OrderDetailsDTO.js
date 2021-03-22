@@ -1,4 +1,4 @@
-function OrderDetailsDTO(orderId, itemCode, qty, unitPrice){
+function OrderDetailsDTO(orderId, itemCode, unitPrice,qty){
     var __orderId=orderId;
     var __itemCode=itemCode;
     var __unitPrice=unitPrice;

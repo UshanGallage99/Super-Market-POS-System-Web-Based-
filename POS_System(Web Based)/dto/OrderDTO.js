@@ -1,7 +1,8 @@
-function OrderDTO(orderId, date, cusId){
+function OrderDTO(orderId, date, cusId, orderDetails){
     var __orderId=orderId;
     var __date=date;
     var __cusId=cusId;
+    var __orderDetails=orderDetails;
      
     this.getOrderId = function () {
         return __orderId;
@@ -11,6 +12,9 @@ function OrderDTO(orderId, date, cusId){
     }
     this.getCusId = function () {
         return __cusId;
+    }
+    this.getOrderDetail = function () {
+        return __orderDetails;
     }
 
     this.setOrderId  = function (newOrderId) {
@@ -22,6 +26,10 @@ function OrderDTO(orderId, date, cusId){
     this.setCusId = function (newCusId) {
         __cusId = newCusId;
     }
+    this.setOrderDetail = function (newOrderDetails) {
+         __orderDetails=newOrderDetails;
+    }
+
      
 
 }
