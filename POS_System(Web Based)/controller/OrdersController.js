@@ -53,21 +53,24 @@ $('#btnAddToList').click(function () {
     let itemname = $("#txtItemName2").val();
     let unitprice = $("#txtUnitPrice2").val();
     let qty = $("#txtQuantity").val();
-    let total = $('#txtQuantity').val()* $('#txtUnitPrice2').val()
+    let total = $('#txtQuantity').val()* $('#txtUnitPrice2').val(); 
+
+    let newQty;
+    let stock = $("#txtInStocks2").val();
+    let qty1 = $("#txtQuantity").val();
+
+    newQty=stock-qty1;
+    let allItems = itemTable;
+    for (let i = 0; i < allItems.length; i++) {
+        if (allItems[i].getItemCode() == $('#txtItemCode2').val()) {
+            allItems[i].setQtyOnHand(newQty);
+        }
+        loadAllItems();
+    }
 
     let result = saveItemList(itemcode, itemname, unitprice, qty, total);
     if(result)clearfields();
     subTotal();
-
-    // let newQty;
-    // newQty = Number.parseInt($('#txtInStocks2').val()) - Number.parseInt($('#txtQuantity').val());
-    // $('#txtInStocks2').val(newQty);
-    // let allItems = itemTable;
-    // for (let i = 0; i < allItems.length; i++) {
-    //     if (allItems[i].getItemCode() == $('#txtItemCode2').val()) {
-    //         allItems[i].setQtyOnHand(newQty);
-    //     }
-    // }
 });
 
 function saveItemList(itemcode, itemname, unitprice, qty, total) {
